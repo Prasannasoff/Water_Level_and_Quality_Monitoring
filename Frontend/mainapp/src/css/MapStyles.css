@@ -1,0 +1,86 @@
+/* Full page background with a custom image */
+.map-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('https://www.transparenttextures.com/patterns/debut-light.png'), 
+                linear-gradient(135deg, #83a4d4, #b6fbff);
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Title Styling */
+.title {
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Wrapper for the map */
+.map-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Map itself */
+.map-container {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+}
+
+/* Coordinates and buttons section */
+.info-section {
+    text-align: center;
+}
+
+.coordinates {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Button Styling */
+.btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.confirm-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+}
+
+/* Hide the Leaflet attribution watermark */
+.leaflet-control-attribution {
+    display: none;
+}

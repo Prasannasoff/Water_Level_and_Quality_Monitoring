@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
@@ -8,20 +8,20 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', {
+      const response = await axios.post('http://localhost:8080/api/signup', {
         fullname: name,
         email: email,
         password: password
       });
-      navigate('/home'); 
+      navigate('/home');
     } catch (error) {
       setError('Something went wrong. Please try again.');
-      setSuccess(''); 
+      setSuccess('');
     }
   };
   return (
