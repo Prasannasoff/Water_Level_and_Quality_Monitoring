@@ -16,14 +16,12 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 # Configure Gemini API
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-# Function to get a response from Gemini based on water data
 def get_gemini_response(lat, lng, water_level, pH):
     model = genai.GenerativeModel('gemini-1.5-flash')
     prompt = f"Generate a report on water conditions for location at latitude {lat} and longitude {lng}. The water level is {water_level} meters, and the water pH is {pH}. Based on this, evaluate whether it is safe for building construction, farming, and other uses."
     gemini_response = model.generate_content(prompt)
     return gemini_response.text
 
-# Endpoint to generate and download the report
 @app.route('/getReport', methods=['POST'])
 def get_report():
     data = request.json
