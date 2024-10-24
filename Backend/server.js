@@ -8,13 +8,13 @@ const app = express();
 const cors = require('cors');
 app.use(express.json());
 app.use(cors());
-require("dotenv").config(); // Ensure this line is present
+require("dotenv").config(); 
 const dbConfig = require("./config/dbConfig.js");
 
-// Haversine formula to calculate the distance between two lat/lng points
+
 function haversineDistance(coord1, coord2) {
-    const toRad = (value) => (value * Math.PI) / 180; // Convert degrees to radians
-    const R = 6371; // Radius of the Earth in km
+    const toRad = (value) => (value * Math.PI) / 180; 
+    const R = 6371; 
 
     const dLat = toRad(coord2.latitude - coord1.latitude);
     const dLon = toRad(coord2.longitude - coord1.longitude);
@@ -25,7 +25,7 @@ function haversineDistance(coord1, coord2) {
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    return R * c; // Distance in km
+    return R * c; 
 }
 
 app.get('/api/water-level', async (req, res) => {
@@ -36,14 +36,13 @@ app.get('/api/water-level', async (req, res) => {
     }
 
     try {
-        // Find the document containing the TN array
-        const waterDataDoc = await WaterLevel.findOne(); // Get the first document
+        const waterDataDoc = await WaterLevel.findOne(); 
 
         if (!waterDataDoc) {
             return res.status(404).json({ message: 'No water level data found' });
         }
 
-        // Convert latitude and longitude to numbers
+       
         const userCoords = {
             latitude: parseFloat(lat),
             longitude: parseFloat(lng)
@@ -78,7 +77,7 @@ app.get('/api/water-quality', async (req, res) => {
     }
 
     try {
-        // Find the document containing the TN array
+  
         const waterDataDoc = await WaterQuality.findOne(); // Get the first document
 
         if (!waterDataDoc) {
