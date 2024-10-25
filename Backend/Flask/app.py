@@ -14,11 +14,11 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 # Configure Gemini API
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-# Helper function to get the full path to the image
+# function to get the full path to the image
 def get_image_path():
     return os.path.join(app.root_path, 'static', 'WaterImage.png')
 
-# Helper function to format the Gemini response and apply bold to headings
+# function to format the Gemini response and apply bold to headings
 def format_gemini_response(response_text):
     formatted_text = ""
     lines = response_text.splitlines()
