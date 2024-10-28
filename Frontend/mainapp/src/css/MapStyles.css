@@ -1,86 +1,86 @@
-/* Full page background with a custom image */
+/* Container Styles */
 .map-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: url('https://www.transparenttextures.com/patterns/debut-light.png'), 
-                linear-gradient(135deg, #83a4d4, #b6fbff);
-    background-size: cover;
-    height: 100vh;
-    width: 100%;
-    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #fff);
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
 }
 
-/* Title Styling */
+/* Header */
 .title {
-    font-size: 3rem;
-    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00796b;
     text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #00695c, #26a69a);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-/* Wrapper for the map */
+/* Map Container */
 .map-container-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 1000px;
-    margin-bottom: 20px;
-    border: 5px solid rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Map itself */
 .map-container {
     width: 100%;
-    height: 500px;
-    border-radius: 20px;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-/* Coordinates and buttons section */
+/* Info Section */
 .info-section {
     text-align: center;
+    width: 100%;
+    max-width: 800px;
 }
 
 .coordinates {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #004d40;
+    margin-bottom: 1rem;
 }
 
-/* Button Styling */
+/* Button Group */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Buttons */
 .btn {
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .clear-btn {
-    background-color: #f44336;
-    color: white;
+    background: linear-gradient(to right, #e53935, #d32f2f);
+    color: #fff;
+    box-shadow: 0px 4px 12px rgba(229, 57, 53, 0.4);
 }
 
 .confirm-btn {
-    background-color: #4CAF50;
-    color: white;
+    background: linear-gradient(to right, #4caf50, #388e3c);
+    color: #fff;
+    box-shadow: 0px 4px 12px rgba(76, 175, 80, 0.4);
 }
 
 .btn:hover {
-    opacity: 0.9;
-    transform: translateY(-3px);
-}
-
-/* Hide the Leaflet attribution watermark */
-.leaflet-control-attribution {
-    display: none;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
