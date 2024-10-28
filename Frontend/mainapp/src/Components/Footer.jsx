@@ -1,46 +1,82 @@
-import React from 'react'
+import React from 'react';
+import { FaEnvelope, FaPhone, FaInfoCircle, FaChartBar, FaNewspaper, FaQuestionCircle, FaFacebook, FaTwitter, FaInstagram, FaRegFileAlt, FaMoneyBillWave, FaShieldAlt } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div className='mt-20 p-[5rem] mb-4 bg-blueColor rounded-[10px] gap-[8] grid grid-cols-5 m-auto items-center justify-centert'>
-        <div>
-            <div className='logo'>
-                <h1 className='text-[25px] text-white pb-[1.5rem]'>
-                    <strong>Grouno</strong>Analysis
-                </h1>
-            </div>
-            <p className='text-white pb-[13px] opacity-70 leading-7'>Save Water for Future Generation</p>
-        </div>
-        
-        <div className='grid ml-40'>
-            <span className='text-[18px] font-semibold pb-[1.5rem] text-white'>Analysis</span>
-        <div className='grid gap-3'>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >About Us</li>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >Features</li>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >News</li>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >FAQ</li>
-        </div>
-        </div>
+    <div className='mt-20 p-10 mb-4 bg-gradient-to-r from-blue-700 to-blue-600 rounded-lg grid grid-cols-1 md:grid-cols-4 gap-8 text-white'>
+      {/* Logo Section */}
+      <div className='flex flex-col mt-10'>
+        <h1 className='text-4xl font-bold pb-2'>
+          <strong className='text-black'>Grouno</strong>Analysis
+        </h1>
+        <p className='opacity-80 leading-6'>Save Water for Future Generations</p>
+      </div>
 
-        <div className='grid ml-40'>
-            <span className='text-[18px] font-semibold pb-[1.5rem] text-white'>Profile</span>
-        <div className='grid gap-3'>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >Regulation</li>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >Schemas</li>
-             <li className='text-white opacity-[.7] hover:opacity-[1]' >Finance</li>
-        </div>
-        </div>
+      {/* Analysis Links */}
+      <div className='ml-6'>
+        <span className='text-lg font-semibold pb-2 mb-10'>Analysis</span>
+        <ul className='grid gap-3 mt-6'>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaInfoCircle className='mr-2 text-xl' /> About Us
+          </li>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaChartBar className='mr-2 text-xl' /> Features
+          </li>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaNewspaper className='mr-2 text-xl' /> News
+          </li>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaQuestionCircle className='mr-2 text-xl' /> FAQ
+          </li>
+        </ul>
+      </div>
 
-        <div className='grid ml-40'>
-            <span className='text-[18px] font-semibold pb-[1.5rem] text-white'>Contact:</span>
-        <div className='grid gap-3'>
-             <li className='text-white opacity-[.7] hover:opacity-[1]'>Email: govgroundlvlckecker@gmail.com</li>
-             <li className='text-white opacity-[.7] hover:opacity-[1]'>Mobile: 9234645016</li>
+      {/* Profile Links */}
+      <div>
+        <span className='text-lg font-semibold pb-2 mt-10'>Profile</span>
+        <ul className='grid gap-3 mt-6'>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaRegFileAlt className='mr-2 text-xl' /> Regulation
+          </li>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaShieldAlt className='mr-2 text-xl' /> Schemas
+          </li>
+          <li className='flex items-center hover:text-gray-200 cursor-pointer'>
+            <FaMoneyBillWave className='mr-2 text-xl' /> Finance
+          </li>
+        </ul>
+      </div>
 
+      {/* Contact Section */}
+      <div>
+        <span className='text-lg font-semibold pb-2'>Contact:</span>
+        <ul className='grid gap-3 mt-6'>
+          <li className='flex items-center'>
+            <FaEnvelope className='mr-2 text-xl' /> govgroundlvlckecker@gmail.com
+          </li>
+          <li className='flex items-center'>
+            <FaPhone className='mr-2 text-xl' /> 9234645016
+          </li>
+        </ul>
+      </div>
+
+      {/* Follow Us Section */}
+      <div className='col-span-full mt-8'>
+        <h3 className='text-lg font-semibold pb-2'></h3>
+        <div className='flex justify-center space-x-6'>
+          <a href="https://facebook.com" className='text-white hover:text-gray-200'>
+            <FaFacebook size={24} />
+          </a>
+          <a href="https://twitter.com" className='text-white hover:text-gray-200'>
+            <FaTwitter size={24} />
+          </a>
+          <a href="https://instagram.com" className='text-white hover:text-gray-200'>
+            <FaInstagram size={24} />
+          </a>
         </div>
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
