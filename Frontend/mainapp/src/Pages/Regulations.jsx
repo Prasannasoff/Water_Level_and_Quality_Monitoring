@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdCheckCircle } from "react-icons/md";  
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -60,12 +60,28 @@ const Regulation = () => {
     },
   ];
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2; // Adjust this value based on how many regulations you want per page
+
+  // Calculate total pages
+  const totalPages = Math.ceil(regulations.length / itemsPerPage);
+
+  // Slice regulations based on the current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentRegulations = regulations.slice(startIndex, startIndex + itemsPerPage);
+
+  // Change page function
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <Navbar />
       <div className="container mx-auto my-10 p-5 bg-gradient-to-r from-blue-100 to-white shadow-lg rounded-lg">
         <h1 className="text-4xl font-bold mb-8 text-blue-700 text-center">Water Regulations in Tamil Nadu</h1>
-        {regulations.map((regulation, index) => (
+        {currentRegulations.map((regulation, index) => (
           <div 
             key={index} 
             className="mb-8 bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out hover:shadow-2xl"
@@ -86,6 +102,19 @@ const Regulation = () => {
             </ul>
           </div>
         ))}
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center my-5">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button 
+              key={index} 
+              className={`mx-2 px-4 py-2 rounded-lg ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-blue-300'}`} 
+              onClick={() => changePage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
       <Footer />
     </>
