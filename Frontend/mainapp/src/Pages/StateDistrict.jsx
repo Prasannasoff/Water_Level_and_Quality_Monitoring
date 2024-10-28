@@ -9867,24 +9867,19 @@ const StateDistrict = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setCurrentPage(1);  
+    setCurrentPage(1);
   };
 
   const filteredData = groundwaterData.filter((item) =>
     item.DISTRICT.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  
   const sortedData = filteredData.sort((a, b) => parseFloat(a.WATER_LEVEL) - parseFloat(b.WATER_LEVEL));
 
-  
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
-
-  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage);
 
-  
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -9900,36 +9895,30 @@ const StateDistrict = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto mt-10">
-        <h1 className="text-2xl font-bold mb-4 text-blue-500">Groundwater Level Data</h1>
+      <div className="container mx-auto mt-10 p-6 bg-gray-50 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold mb-4 text-blue-600">Groundwater Level Data</h1>
 
-        
-        <div className="mb-4">
+        <div className="mb-6">
           <input
             type="text"
             placeholder="Search by District Name"
             value={searchTerm}
             onChange={handleSearchChange}
-            className="p-2 border border-gray-300 rounded-md w-[50%]"
+            className="p-3 border border-gray-300 rounded-md w-[50%] focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
 
-        
-        <table className="min-w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border border-gray-300 p-2">State</th>
-              <th className="border border-gray-300 p-2">District</th>
-              <th className="border border-gray-300 p-2">Block Name</th>
-              <th className="border border-gray-300 p-2">Village Name</th>
-              <th className="border border-gray-300 p-2">Site Name</th>
-              <th className="border border-gray-300 p-2">Well Site Type</th>
-              <th className="border border-gray-300 p-2">Water Level (m)</th>
+        <table className="min-w-full border-collapse border border-gray-300 shadow-md">
+          <thead className="bg-blue-500 text-white">
+            <tr>
+              {['State', 'District', 'Block Name', 'Village Name', 'Site Name', 'Well Site Type', 'Water Level (m)'].map((header, index) => (
+                <th key={index} className="border border-gray-300 p-2 text-left">{header}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {currentData.map((item, index) => (
-              <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+              <tr key={index} className={`${index % 2 === 0 ? "bg-white" : "bg-gray-100"} hover:bg-blue-50 transition-all duration-300`}>
                 <td className="border border-gray-300 p-2">{item.STATE}</td>
                 <td className="border border-gray-300 p-2">{item.DISTRICT}</td>
                 <td className="border border-gray-300 p-2">{item.BLOCK_NAME}</td>
@@ -9942,12 +9931,11 @@ const StateDistrict = () => {
           </tbody>
         </table>
 
-      
         <div className="flex justify-between items-center mt-4">
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className={`px-4 py-2 border border-gray-300 rounded-md ${currentPage === 1 ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-blue-500 text-white hover:bg-blue-600"}`}
+            className={`px-4 py-2 border border-gray-300 rounded-md transition-all duration-300 ${currentPage === 1 ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-blue-500 text-white hover:bg-blue-600"}`}
           >
             Previous
           </button>
@@ -9957,7 +9945,7 @@ const StateDistrict = () => {
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className={`px-4 py-2 border border-gray-300 rounded-md ${currentPage === totalPages ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-blue-500 text-white hover:bg-blue-600"}`}
+            className={`px-4 py-2 border border-gray-300 rounded-md transition-all duration-300 ${currentPage === totalPages ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-blue-500 text-white hover:bg-blue-600"}`}
           >
             Next
           </button>
