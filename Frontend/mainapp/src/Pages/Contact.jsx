@@ -20,8 +20,9 @@ const Contact = () => {
     return (
         <>
             <Navbar />
-            <div className="flex justify-center items-center min-h-screen py-10 bg-gray-50">
-                <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md">
+            <div className="flex justify-center items-center min-h-screen py-10 bg-gradient-to-b from-gray-50 to-gray-200">
+                <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md relative overflow-hidden">
+                    <div className="absolute inset-0 bg-blue-100 transform rotate-3 rounded-lg -z-10"></div>
                     <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Get in Touch</h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="relative">
