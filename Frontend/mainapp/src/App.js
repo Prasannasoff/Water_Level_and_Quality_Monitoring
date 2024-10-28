@@ -9,7 +9,7 @@ import Schems from './Pages/Schemes';
 import Contact from './Pages/Contact';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Landing from './Pages/Landing';
-
+import WaterAnalysis from './Components/WaterAnalysis';
 const App = () => {
   const routes = (
     <Router>
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/schems"exact element={< Schems/>} />
         <Route path="/contact" exact element={< Contact/>} />
         <Route path="/reg" exact element={< Regulation/>} />
+        <Route path="/analysis" element={<WaterAnalysis />} />
       </Routes>
     </Router>
   );

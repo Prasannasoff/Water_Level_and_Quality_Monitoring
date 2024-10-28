@@ -1,0 +1,42 @@
+.beaker-container {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #e0f7fa;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.wave {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    left: -100%;
+    top: 50%;
+    border-radius: 45%;
+    animation: wave-animation 5s linear infinite;
+}
+
+.wave-01 {
+    background-color: rgba(0, 190, 255, 0.4);
+    animation-duration: 6s;
+}
+
+.wave-02 {
+    background-color: rgba(0, 150, 255, 0.4);
+    animation-duration: 5s;
+}
+
+
+@keyframes wave-animation {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5%) rotate(120deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}

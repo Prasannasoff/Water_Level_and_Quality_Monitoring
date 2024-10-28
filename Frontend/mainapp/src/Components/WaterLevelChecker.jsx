@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaWater, FaMapMarkerAlt, FaFileAlt } from 'react-icons/fa';
@@ -54,9 +54,14 @@ const WaterLevelChecker = () => {
             console.error("Error in fetching water level", err);
             setDetails(null);
         }
-
-        setShowModal(true);
     };
+
+    // Navigate to analysis page once Details and condition are updated
+    useEffect(() => {
+        if (Details && condition) {
+            navigate('/analysis', { state: { Details, condition } });
+        }
+    }, [Details, condition, navigate]);
 
     const handleReport = async (Details) => {
         try {
