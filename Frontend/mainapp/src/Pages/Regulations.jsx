@@ -63,15 +63,23 @@ const Regulation = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-10 p-5 shadow-lg">
-        <h1 className="text-3xl font-bold mb-6 text-blue-600">Water Regulations in Tamil Nadu</h1>
+      <div className="container mx-auto my-10 p-5 bg-gradient-to-r from-blue-100 to-white shadow-lg rounded-lg">
+        <h1 className="text-4xl font-bold mb-8 text-blue-700 text-center">Water Regulations in Tamil Nadu</h1>
         {regulations.map((regulation, index) => (
-          <div key={index} className="mb-8 bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-gray-700 mb-3">{regulation.category}</h2>
-            <ul className="list-none pl-5 text-gray-600">
+          <div 
+            key={index} 
+            className="mb-8 bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out hover:shadow-2xl"
+          >
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-600 pb-2">{regulation.category}</h2>
+            <ul className="list-none pl-5 text-gray-700">
               {regulation.details.map((detail, i) => (
-                <li key={i} className="mb-2 flex items-center">
-                  <MdCheckCircle className="text-blue-600 mr-2" /> 
+                <li 
+                  key={i} 
+                  className="mb-3 flex items-center hover:text-blue-600 transition duration-200 ease-in"
+                >
+                  <div className="bg-blue-600 text-white rounded-full p-1 mr-2">
+                    <MdCheckCircle className="text-lg" />
+                  </div>
                   {detail}
                 </li>
               ))}
