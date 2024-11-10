@@ -66,7 +66,7 @@ const Signup = () => {
 
           <p className="text-sm text-center mt-4">
             Already registered?{' '}
-            <Link to="/" className="font-medium text-blueColor underline">
+            <Link to="/login" className="font-medium text-blueColor underline">
               Login
             </Link>
           </p>
