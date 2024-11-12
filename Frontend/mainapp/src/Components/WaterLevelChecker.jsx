@@ -63,25 +63,7 @@ const WaterLevelChecker = () => {
         }
     }, [Details, condition, navigate]);
 
-    const handleReport = async (Details) => {
-        try {
-            const response = await axios.post('http://localhost:5000/getReport', { Details: Details }, {
-                responseType: 'blob'
-            });
-
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Water_Report.pdf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
     
-        } catch (error) {
-            console.error("Error generating the report", error);
-        }
-    };
-
     return (
         <div className="max-w-3xl mx-auto p-8 bg-gradient-to-r from-blue-50 to-blue-100 shadow-2xl rounded-lg mt-10">
             <h2 className="text-3xl font-extrabold text-blue-700 mb-8 text-center">
@@ -105,14 +87,7 @@ const WaterLevelChecker = () => {
                         <FaMapMarkerAlt className="mr-2 text-lg" />
                         Select Location
                     </button>
-                    <button
-                        className="flex items-center justify-center bg-teal-600 text-white py-3 px-4 rounded-lg hover:bg-teal-700 focus:outline-none shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-                        onClick={() => handleReport(Details)}
-                        style={{ width: '30%' }}
-                    >
-                        <FaFileAlt className="mr-2 text-lg" />
-                        Generate Report
-                    </button>
+                   
                 </div>
                 <p className="text-gray-600 text-center text-lg mt-4">
                     <span className="font-medium">Latitude:</span> {lat || 'N/A'} | <span className="font-medium">Longitude:</span> {lng || 'N/A'}
