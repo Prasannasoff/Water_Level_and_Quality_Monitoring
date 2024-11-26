@@ -45,7 +45,7 @@ def get_gemini_response(lat, lng, water_level, pH, District, BlockName):
 def get_report():
     data = request.json
     details = data.get('Details')
-    
+    print(details)
     if not details:
         return jsonify({"error": "Details are missing"}), 400
 

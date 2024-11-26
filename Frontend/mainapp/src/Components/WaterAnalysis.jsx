@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BsDropletHalf, BsMap, BsGeoAlt, BsBuilding } from 'react-icons/bs';
+import { FaWater, FaMapMarkerAlt, FaFileAlt } from 'react-icons/fa';
+
 import { FaTint } from 'react-icons/fa'; // New icon for pH level
 import './WaterAnalysis.css'; // Import the CSS for waves
-
+import axios from 'axios';
 const WaterAnalysis = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -13,7 +15,8 @@ const WaterAnalysis = () => {
     const getPhRepresentation = (pH) => {
         if (pH >= 7) return { color: 'green', label: 'Neutral/Alkaline' };
         if (pH > 5 && pH < 7) return { color: 'yellow', label: 'Moderately Acidic' };
-        return { color: 'red', label: 'Highly Acidic' };
+        if(pH>7) return { color: 'red', label: 'Highly Acidic' };
+        return{color:'Black',label:'No pH available for this location'}
     };
 
     const { color, label } = getPhRepresentation(Details?.pH);
@@ -25,6 +28,24 @@ const WaterAnalysis = () => {
         }, 100); // Delay for animation effect
         return () => clearTimeout(timer);
     }, []);
+    const handleReport = async (Details) => {
+        try {
+            const response = await axios.post('http://localhost:5000/getReport', { Details: Details }, {
+                responseType: 'blob'
+            });
+
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Water_Report.pdf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+        } catch (error) {
+            console.error("Error generating the report", error);
+        }
+    };
 
     return (
         <div className="p-8 bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex flex-col items-center">
@@ -52,7 +73,7 @@ const WaterAnalysis = () => {
 
                 {/* Water Level Analysis */}
                 <h3 className="text-2xl font-semibold text-blue-600 mt-6 mb-4">Water Level Analysis</h3>
-                
+
                 {/* Water wave and level display */}
                 <div className="flex items-center justify-center mt-6">
                     {/* Circular beaker with animated wave */}
@@ -60,7 +81,7 @@ const WaterAnalysis = () => {
                         <div className="wave wave-01"></div>
                         <div className="wave wave-02"></div>
                     </div>
-                    
+
                     {/* Water level display with animation */}
                     <div className="ml-6 text-center">
                         <p className={`text-3xl font-bold transition-transform duration-500 ${isVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}>
@@ -81,6 +102,14 @@ const WaterAnalysis = () => {
                         Back
                     </button>
                 </div>
+                <button
+                    className="flex items-center justify-center bg-teal-600 text-white py-3 px-4 rounded-lg hover:bg-teal-700 focus:outline-none shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                    onClick={() => handleReport(Details)}
+                    style={{ width: '30%' }}
+                >
+                    <FaFileAlt className="mr-2 text-lg" />
+                    Generate Report
+                </button>
             </div>
         </div>
     );

@@ -10,10 +10,13 @@ const app = express();
 const cors = require('cors');
 app.use(express.json());
 app.use(cors());
+const port = process.env.PORT || 8080
 require("dotenv").config(); 
 const dbConfig = require("./config/dbConfig.js");
+const sqlConfig = require("./config/sqlConfig.js");
 
-
+const bcrypt = require('bcryptjs');
+console.log("ROOT"+process.env.MYSQL_HOST)
 function haversineDistance(coord1, coord2) {
     const toRad = (value) => (value * Math.PI) / 180; 
     const R = 6371; 
@@ -185,39 +188,91 @@ app.get('/api/insert', async (req, res) => {
         res.status(500).json({ message: 'Error inserting data' });
     }
 });
+// app.post('/api/signup', async (req, res) => {
+//     const { fullname, email, password } = req.body;
+
+//     try {
+//         const existingUser = await User.findOne({ email });
+//         if (existingUser) {
+//             return res.status(400).json({ message: 'User already exists' });
+//         }
+
+//         const newUser = new User({
+//             fullname,
+//             email,
+//             password, // Remember to hash this before saving it in a production app
+//         });
+
+//         await newUser.save();
+//         res.status(201).json({ message: 'User registered successfully' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// });
+// app.post('/api/login', async (req, res) => {
+//     const { email, password } = req.body;
+
+//     try {
+//         const user = await User.findOne({ email });
+
+//         if (!user) {
+//             return res.status(400).json({ message: 'User not found' });
+//         }
+
+//         if (user.password !== password) {
+//             return res.status(400).json({ message: 'Invalid credentials' });
+//         }
+
+//         res.status(200).json({ message: 'Login successful' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// });
+
 app.post('/api/signup', async (req, res) => {
     const { fullname, email, password } = req.body;
 
     try {
-        const existingUser = await User.findOne({ email });
+        // Check if the user already exists
+        const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        const newUser = new User({
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create a new user
+        const newUser = await User.create({
             fullname,
             email,
-            password, // Remember to hash this before saving it in a production app
+            password: hashedPassword,
         });
 
-        await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+// User Login
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        // Find the user by email
+        const user = await User.findOne({ where: { email } });
 
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
 
-        if (user.password !== password) {
+        // Compare the provided password with the stored hashed password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
@@ -229,6 +284,6 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Start the server
-app.listen(8080, () => {
-    console.log('Server running on port 8080');
-});
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
