@@ -15,7 +15,8 @@ const WaterAnalysis = () => {
     const getPhRepresentation = (pH) => {
         if (pH >= 7) return { color: 'green', label: 'Neutral/Alkaline' };
         if (pH > 5 && pH < 7) return { color: 'yellow', label: 'Moderately Acidic' };
-        return { color: 'red', label: 'Highly Acidic' };
+        if(pH>7) return { color: 'red', label: 'Highly Acidic' };
+        return{color:'Black',label:'No pH available for this location'}
     };
 
     const { color, label } = getPhRepresentation(Details?.pH);
