@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const WaterLevel = require('./models/WaterLevelModel'); // Import the water level model
 const User = require('./models/User.model.js');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 const WaterQuality = require('./models/WaterQualityModel.js');
 const axios = require('axios');
 const app = express();
@@ -140,14 +142,43 @@ app.get('/api/water-quality', async (req, res) => {
 //     }
 
 // });
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS, 
+    },
+});
 
+
+app.post('/send-mail', (req, res) => {
+    const { name, email, message } = req.body;
+
+    const mailOptions = {
+        from: email,
+        to: process.env.EMAIL_USER, 
+        subject: `New Contact Form Submission from ${name}`,
+        text: `You received a message from:
+        Name: ${name}
+        Email: ${email}
+        Message: ${message}`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).send('Error sending email');
+        }
+        console.log('Email sent:', info.response);
+        res.status(200).send('Email sent successfully');
+    });
+});
 
 app.get('/api/insert', async (req, res) => {
     try {
-        // Insert the data object into the WaterQuality collection
-        const result = await WaterQuality.create(data);  // Insert as a single document with TN array
+        const result = await WaterQuality.create(data);  
 
-        // Send success response
+        
         res.status(200).json({ message: 'Data inserted successfully', result });
     } catch (err) {
         console.error('Error inserting data:', err);
