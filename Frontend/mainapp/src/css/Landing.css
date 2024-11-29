@@ -1,4 +1,4 @@
-/* Add these styles in Landing.css */
+/* Add these styles in Landing.css
 
 .water-fill {
     position: absolute;
@@ -17,4 +17,79 @@
       height: 100%;
     }
   }
+   */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.outerCont{
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  height: 100vh;
+
+}
+.logoImage {
+  height: 80px;  /* Adjust logo size */
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 0 1px 1x;
+}
+.navLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 18px;
+  color: #000;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: #007bff;  /* Hover effect color */
+}
+
+.mainCont{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   
+  justify-items: center;
+  align-items: center; 
+}
+.textCont{
+  font-size: 70px;
+  font-family: 'Lato';
+  color: black;
+  font-weight: 800;
+}
+.loginBtn{
+  display: flex;
+  color: rgb(71, 144, 253);
+  border: solid;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  width:180px;
+  font-size: 23px;
+  font-weight: 500;
+  border-radius: 30px;
+  border-width: 2px;
+  border-color: rgb(47, 182, 255);
+  padding: 4px;
+}
+.vertical-line {
+  border-left: 2px solid #ccc;  /* You can adjust the color and thickness */
+  height: 100%;                  /* Ensures the line stretches full height */
+  margin: 0 20px;                /* Adds space on either side of the line */
+}

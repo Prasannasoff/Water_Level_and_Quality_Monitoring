@@ -145,6 +145,7 @@ app.get('/api/water-quality', async (req, res) => {
 //     }
 
 // });
+console.log("ENV",process.env.EMAIL_USER)
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
